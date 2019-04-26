@@ -15,6 +15,26 @@
 
                 </div>
             </nav>
+            <ul id="slide-out" class="sidenav">
+                <li>
+                    <div class="user-view">
+                        <div class="background">
+                            <img src="images/office.jpg">
+                        </div>
+                        <a href="#user"><img class="circle" src="images/yuna.jpg"></a>
+                        <a href="#name"><span class="white-text name">John Doe</span></a>
+                        <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+                    </div>
+                </li>
+                <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+                <li><a href="#!">Second Link</a></li>
+                <li>
+                    <div class="divider"></div>
+                </li>
+                <li><a class="subheader">Subheader</a></li>
+                <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+            </ul>
+            <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <h1 class="center">{{teste}}</h1>
         </header>
 
@@ -31,14 +51,15 @@
                             <th>PRESCRIÇÃO DO PACIENTE</th>
                             <th>HORÁRIO</th>
                             <th>EXAMES</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>Alvin</td>
-                            <td>Eclair</td>
-                            <td>$0.87</td>
+                        <tr v-for="medicacao in medicacoesTabela">
+                            <td>{{medicacao.prescricaoPasciente}}</td>
+                            <td>{{medicacao.horario}}</td>
+                            <td>{{medicacao.exames}}</td>
                         </tr>
                     </tbody>
                     <tfoot>
@@ -52,23 +73,94 @@
 
                     </tfoot>
                 </table>
+
+                <button class="btn" @click="incluirMedicacao">Insulina</button>
+
+                <!-- Modal Trigger -->
+                <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Criar botao</a>
+
+                <!-- Modal Structure -->
+                <div id="modal1" class="modal">
+                    <div class="modal-content">
+                        <form action="">
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="row">
+                                        <h4>Criando botao</h4>
+                                        <div class="input-field col s6">
+                                            <label for="">Nome do botao</label>
+                                            <input type="text" class="">
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <label for="">Descricao do botao</label>
+                                            <input type="text" class="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect btn">Criar</a>
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+
+                    </div>
+                </div>
             </div>
         </main>
     </div>
 </body>
 
 <script>
+
+
     const vm = new Vue({
         el: "#app",
         data: {
             teste: 'Prescrição Médica',
             diaAtual: '26/04/2019',
+            medicacoesTabela: [
+                {
+                    prescricaoPasciente: 'Insulina reg sc conforme dextro',
+                    horario: '14:00',
+                    exames: 'todos'
+                },
+                {
+                    prescricaoPasciente: 'Insulina reg sc conforme dextro',
+                    horario: '14:00',
+                    exames: 'todos'
+                }
+
+            ]
+        },
+        methods: {
+            incluirBotao() {
+
+            },
+
+            incluirMedicacao() {
+                const insulina = {
+                    prescricaoPasciente: "insulina",
+                    horario: "15:00",
+                    exames: "all"
+                }
+                this.medicacoesTabela.push(insulina);
+
+            }
         }
     })
 
+
     document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('select');
-        var instances = M.FormSelect.init(elems);
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems);
+        var modal = document.querySelectorAll('.modal');
+        var i = M.Modal.init(modal);
     });
 
 </script>
