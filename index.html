@@ -1,10 +1,59 @@
+<html>
+
 <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="css/materialize.min.css" />
+    <script src="js/materialize.min.js"></script>
 </head>
 
 <body>
     <div id="app">
-        {{teste}}
+        <header>
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="#" class="brand-logo">Logo</a>
+
+                </div>
+            </nav>
+            <h1 class="center">{{teste}}</h1>
+        </header>
+
+        <!--TODO-->
+        <main>
+            <div class="container">
+                <h3>Prescrição diária: {{ diaAtual }}</h2>
+                    <h4>Diagnóstico:
+                </h3>
+
+                <table class="highlight">
+                    <thead>
+                        <tr>
+                            <th>PRESCRIÇÃO DO PACIENTE</th>
+                            <th>HORÁRIO</th>
+                            <th>EXAMES</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Alvin</td>
+                            <td>Eclair</td>
+                            <td>$0.87</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+
+                        <tr>
+                            <td></td>
+                            <td>
+                                carimbo do médico
+                            </td>
+                        </tr>
+
+                    </tfoot>
+                </table>
+            </div>
+        </main>
     </div>
 </body>
 
@@ -12,8 +61,16 @@
     const vm = new Vue({
         el: "#app",
         data: {
-            teste: 'Prescrição médica',
+            teste: 'Prescrição Médica',
+            diaAtual: '26/04/2019',
         }
     })
 
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems);
+    });
+
 </script>
+
+</html>
