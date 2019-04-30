@@ -1,10 +1,12 @@
-from flask import Flask, request, Response, redirect
+from flask import Flask, redirect
+
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def main():
-    return redirect('index.html')
+	return redirect('static/index.html')
 
 
 
